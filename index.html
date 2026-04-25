@@ -23,6 +23,13 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Prevent horizontal scrolling globally */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+  
   html { scroll-behavior: smooth; }
 
   body {
@@ -193,6 +200,12 @@
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
+  /* MOBILE SPECIFIC FIXES */
+    @media (max-width: 480px) {
+      .btn { width: 100%; } /* Stack buttons on small screens */
+      .project-card { padding: 15px; }
+      .wrapper { padding: 0 15px; }
+    }
   .hero-stat-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -278,8 +291,9 @@
   /* ── PROJECTS ── */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 20px;
+    width: 100%;
   }
   .project-card {
     background: var(--surface);
@@ -292,6 +306,8 @@
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
+    word-wrap: break-word; /* Prevents long text from stretching the card */
+    }
   }
   .project-card::before {
     content: '';
